@@ -1,2 +1,9 @@
 infra/.env
 .idea/workspace.xml
+
+
+# APM dependencies
+apm_modules/
+
+# Local secrets (GITLAB_TOKEN, ...)
+.env
