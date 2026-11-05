@@ -1,0 +1,35 @@
+# GitLab CE (omnibus). First boot takes ~3-5 min.
+# Trimmed config for dev machines (no Prometheus/exporters, Puma single mode).
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:${GITLAB_VERSION:-19.5.3-ce.0}
+    container_name: gitlab
+    hostname: gitlab
+    restart: unless-stopped
+    shm_size: 256m
+    ports:
+      - "${GITLAB_HTTP_PORT:-8929}:${GITLAB_HTTP_PORT:-8929}"
+      - "${GITLAB_SSH_PORT:-2224}:22"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:${GITLAB_HTTP_PORT:-8929}'
+        gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_SSH_PORT:-2224}
+        gitlab_rails['initial_root_password'] = '${GITLAB_ROOT_PASSWORD}'
+        gitlab_rails['time_zone'] = 'America/Sao_Paulo'
+        # Allow webhooks/integrations to other containers on the network (e.g. metric collector)
+        gitlab_rails['allow_local_requests_from_web_hooks_and_services'] = true
+        # --- low-memory mode ---
+        puma['worker_processes'] = 0
+        sidekiq['concurrency'] = 10
+        prometheus_monitoring['enable'] = false
+        gitlab_rails['usage_ping_enabled'] = false
+        gitlab_kas['enable'] = false
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:

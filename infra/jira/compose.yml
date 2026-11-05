@@ -1,0 +1,53 @@
+# Jira Software Data Center (requires a free 30-day trial license:
+# https://my.atlassian.com/license/evaluation — use the Server ID shown during setup).
+services:
+  jira:
+    image: atlassian/jira-software:${JIRA_VERSION:-10.3.23}
+    container_name: jira
+    restart: unless-stopped
+    depends_on:
+      jira-db:
+        condition: service_healthy
+    ports:
+      - "${JIRA_PORT:-8080}:8080"
+    environment:
+      ATL_JDBC_URL: jdbc:postgresql://jira-db:5432/jira
+      ATL_JDBC_USER: jira
+      ATL_JDBC_PASSWORD: ${JIRA_DB_PASSWORD:-jira}
+      ATL_DB_DRIVER: org.postgresql.Driver
+      ATL_DB_TYPE: postgres72
+      ATL_PROXY_NAME: localhost
+      ATL_PROXY_PORT: ${JIRA_PORT:-8080}
+      ATL_TOMCAT_SCHEME: http
+      JVM_MINIMUM_MEMORY: 1024m
+      JVM_MAXIMUM_MEMORY: ${JIRA_JVM_MAX:-2048m}
+      TZ: America/Sao_Paulo
+    volumes:
+      - jira-data:/var/atlassian/application-data/jira
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/status | grep -qE 'RUNNING|FIRST_RUN'"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+
+  jira-db:
+    image: postgres:15-alpine
+    container_name: jira-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jira
+      POSTGRES_USER: jira
+      POSTGRES_PASSWORD: ${JIRA_DB_PASSWORD:-jira}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - jira-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jira -d jira"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  jira-data:
+  jira-db-data:
