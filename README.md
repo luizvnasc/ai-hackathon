@@ -51,3 +51,7 @@ On **GitLab CE** the `mcp` scope is not offered for personal access tokens (only
 Set `GITLAB_URL` to point at another instance (defaults to `http://localhost:8929`).
 
 Troubleshooting: `docker exec gitlab gitlab-rake "gitlab:mcp:verify_setup[<username>]"` runs GitLab's own MCP diagnostics.
+
+## APM package (deliverable)
+
+The shareable package lives in [`apm/`](apm/README.md), a git submodule of https://github.com/luizvnasc/ai-hackathon-apm (clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone). Teams install it with `apm install luizvnasc/ai-hackathon-apm` and run its setup wizard (`/setup-mcp` in Claude Code, or `apm/scripts/setup-mcp.sh`) to register the GitLab MCP server against their own instance.

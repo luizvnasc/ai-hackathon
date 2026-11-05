@@ -1,0 +1,14 @@
+name: ai-hackathon
+version: 1.0.0
+description: APM project for ai-hackathon
+author: Guto
+dependencies:
+  apm:
+    - ./apm
+  mcp:
+    - name: gitlab
+      registry: false
+      transport: http
+      url: http://localhost:8929/api/v4/mcp
+includes: auto
+scripts: {}

@@ -1,0 +1,109 @@
+lockfile_version: '1'
+apm_version: 0.35.0
+dependencies:
+- repo_url: _local/apm
+  name: hackathon-metrics
+  version: 0.2.0
+  package_type: apm_package
+  deployed_files:
+  - .claude/commands/setup-mcp.md
+  - .claude/skills/gitlab-milestone-forecast
+  - .claude/skills/gitlab-milestone-forecast/SKILL.md
+  - .claude/skills/gitlab-milestone-forecast/scripts/forecast.py
+  - .claude/skills/gitlab-repo-kpis
+  - .claude/skills/gitlab-repo-kpis/SKILL.md
+  - .claude/skills/gitlab-repo-kpis/scripts/kpis.py
+  deployed_file_hashes:
+    .claude/commands/setup-mcp.md: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
+    .claude/skills/gitlab-milestone-forecast/SKILL.md: sha256:d0b2fe5cfdc5de39bb298c112e0c843eb8c46e60f0c04093e6a7882ae10ce931
+    .claude/skills/gitlab-milestone-forecast/scripts/forecast.py: sha256:e5c20f4fa54227ff16a033f9c84c93f481835a1a672e5bdea322275c80b0d6ad
+    .claude/skills/gitlab-repo-kpis/SKILL.md: sha256:1cc7b255a4c3d8837e1f835acc55dc2dd377ff7e6398ff4782d33344b2511d2e
+    .claude/skills/gitlab-repo-kpis/scripts/kpis.py: sha256:d61b943f7e95c678c5bb3e1eff0e44f764ded36b1d33fbd4161ab42b3389d90e
+  source: local
+  local_path: ./apm
+  content_hash: sha256:2f377ff36ffb8acd113d5d09db0619d78f86f7b015a4347b293bc5ea43566bc2
+  declared_license: MIT
+deployments:
+- kind: project-relative
+  target: claude
+  value: .claude/commands/setup-mcp.md
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-milestone-forecast
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-milestone-forecast/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:d0b2fe5cfdc5de39bb298c112e0c843eb8c46e60f0c04093e6a7882ae10ce931
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-milestone-forecast/scripts/forecast.py
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:e5c20f4fa54227ff16a033f9c84c93f481835a1a672e5bdea322275c80b0d6ad
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-repo-kpis
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-repo-kpis/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:1cc7b255a4c3d8837e1f835acc55dc2dd377ff7e6398ff4782d33344b2511d2e
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-repo-kpis/scripts/kpis.py
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:d61b943f7e95c678c5bb3e1eff0e44f764ded36b1d33fbd4161ab42b3389d90e
+- kind: uri
+  target: mcp
+  value: gitlab
+  runtime: claude
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:f3eb707d8fef0ba7b1eea4d59eafde917dba99799572bedfd22e44e1fa0289cd
+mcp_servers:
+- gitlab
+mcp_configs:
+  gitlab:
+    name: gitlab
+    transport: http
+    registry: false
+    url: http://localhost:8929/api/v4/mcp
+mcp_target_servers:
+  claude:
+  - gitlab
