@@ -3,7 +3,7 @@ apm_version: 0.35.0
 dependencies:
 - repo_url: _local/apm
   name: hackathon-metrics
-  version: 0.2.0
+  version: 0.3.0
   package_type: apm_package
   deployed_files:
   - .claude/commands/setup-mcp.md
@@ -13,15 +13,20 @@ dependencies:
   - .claude/skills/gitlab-repo-kpis
   - .claude/skills/gitlab-repo-kpis/SKILL.md
   - .claude/skills/gitlab-repo-kpis/scripts/kpis.py
+  - .claude/skills/gitlab-to-plane
+  - .claude/skills/gitlab-to-plane/SKILL.md
+  - .claude/skills/gitlab-to-plane/scripts/migrate.py
   deployed_file_hashes:
     .claude/commands/setup-mcp.md: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
     .claude/skills/gitlab-milestone-forecast/SKILL.md: sha256:d0b2fe5cfdc5de39bb298c112e0c843eb8c46e60f0c04093e6a7882ae10ce931
     .claude/skills/gitlab-milestone-forecast/scripts/forecast.py: sha256:e5c20f4fa54227ff16a033f9c84c93f481835a1a672e5bdea322275c80b0d6ad
     .claude/skills/gitlab-repo-kpis/SKILL.md: sha256:1cc7b255a4c3d8837e1f835acc55dc2dd377ff7e6398ff4782d33344b2511d2e
     .claude/skills/gitlab-repo-kpis/scripts/kpis.py: sha256:d61b943f7e95c678c5bb3e1eff0e44f764ded36b1d33fbd4161ab42b3389d90e
+    .claude/skills/gitlab-to-plane/SKILL.md: sha256:ff40bd32c8e2b7f9a97a8837100eafaa59bdf6796b5839394c40ee146068c662
+    .claude/skills/gitlab-to-plane/scripts/migrate.py: sha256:a48dd8c2ff044c99e18887021c61a0844568b11c8e71c8a5eb959bfac793e58b
   source: local
   local_path: ./apm
-  content_hash: sha256:2f377ff36ffb8acd113d5d09db0619d78f86f7b015a4347b293bc5ea43566bc2
+  content_hash: sha256:c6fec7433d560693e8271fb29b5731f5ca7d6203d0d1f0436f681484544d917d
   declared_license: MIT
 deployments:
 - kind: project-relative
@@ -87,6 +92,33 @@ deployments:
   - ./apm
   active_owner: ./apm
   content_hash: sha256:d61b943f7e95c678c5bb3e1eff0e44f764ded36b1d33fbd4161ab42b3389d90e
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-to-plane
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-to-plane/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:ff40bd32c8e2b7f9a97a8837100eafaa59bdf6796b5839394c40ee146068c662
+- kind: project-relative
+  target: claude
+  value: .claude/skills/gitlab-to-plane/scripts/migrate.py
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:a48dd8c2ff044c99e18887021c61a0844568b11c8e71c8a5eb959bfac793e58b
 - kind: uri
   target: mcp
   value: gitlab

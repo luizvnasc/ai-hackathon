@@ -16,7 +16,7 @@ make help      # other commands (jira / gitlab / plane individually, logs, down,
 |---|---|---|
 | Jira 10.3 LTS | http://localhost:8080 | Setup wizard (database is preconfigured). Requires a free **trial** license: https://my.atlassian.com/license/evaluation → *Jira Software (Data Center)*, using the Server ID shown on screen. |
 | GitLab CE 19.5 | http://localhost:8929 | user `root`, password from `make gitlab-password`. SSH on port 2224. First boot takes ~3-5 min. |
-| Plane v1.4.3 | http://localhost:8090 | Instance admin at http://localhost:8090/god-mode/ → then create a workspace/project. |
+| Plane v1.4.3 | http://localhost:8090 | `make plane` creates the instance admin `root@plane.local`; get its password with `make plane-password`. Log in at http://localhost:8090/god-mode/, then create a workspace/project. |
 
 All containers share the `ai-hackathon_default` network; from inside it the services are reachable as `http://jira:8080`, `http://gitlab:8929` and `http://plane-proxy` (handy for MCP servers / collectors running in containers).
 
