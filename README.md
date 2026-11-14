@@ -46,7 +46,7 @@ On **GitLab CE** the `mcp` scope is not offered for personal access tokens (only
 1. Start `claude` in this repo and approve the project MCP server when prompted.
 2. Run `/mcp` → select `gitlab` → **Authenticate**. A browser tab opens on http://localhost:8929; log in and click **Authorize**.
 3. `/mcp` should now show `gitlab · connected`. The token is stored by Claude Code, not in the repo.
-4. Use the `gitlab-metrics` subagent (`.claude/agents/gitlab-metrics.md`), e.g. *"use the gitlab-metrics agent to report MR lead time for group X over the last 30 days"*.
+4. Ask for one of the APM package skills (see below), e.g. *"which issues are blocked in v1.0 of acme/inventory-manager?"*.
 
 Set `GITLAB_URL` to point at another instance (defaults to `http://localhost:8929`).
 
