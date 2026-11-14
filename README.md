@@ -37,21 +37,30 @@ infra/
   plane/compose.yml  # adapted from Plane's official v1.4.3 compose
 ```
 
-## Claude Code + GitLab MCP
+## Skills: API access
 
-GitLab (18.x+) ships a built-in MCP server at `/api/v4/mcp`. This repo's `.mcp.json` registers it as the `gitlab` server.
+The APM package skills (see below) call the GitLab and Plane APIs from their bundled scripts. Set `GITLAB_URL` and `GITLAB_TOKEN` (scope `read_api`, or `api` to write), and `PLANE_URL`, `PLANE_WORKSPACE` and `PLANE_API_KEY`. Use environment variables, or a `.env` file in the repository root, which is git-ignored here. For the local stack:
+
+```
+GITLAB_URL=http://localhost:8929
+PLANE_URL=http://localhost:8090
+PLANE_WORKSPACE=acme
+```
+
+A skill that misses a variable says which one and how to set it on Linux/macOS or Windows. Then ask for a skill, e.g. *"which issues are blocked in v1.0 of acme/inventory-manager?"*.
+
+## Optional: GitLab MCP for ad-hoc questions
+
+The skills do not need it, but GitLab (18.x+) ships a built-in MCP server at `/api/v4/mcp`, handy for ad-hoc questions in the chat. This repo's `.mcp.json` registers it as the `gitlab` server.
 
 On **GitLab CE** the `mcp` scope is not offered for personal access tokens (only `ai_features` shows up in the UI), so authentication is done with **OAuth + dynamic client registration**, which Claude Code handles for you:
 
 1. Start `claude` in this repo and approve the project MCP server when prompted.
 2. Run `/mcp` → select `gitlab` → **Authenticate**. A browser tab opens on http://localhost:8929; log in and click **Authorize**.
 3. `/mcp` should now show `gitlab · connected`. The token is stored by Claude Code, not in the repo.
-4. Ask for one of the APM package skills (see below), e.g. *"which issues are blocked in v1.0 of acme/inventory-manager?"*.
-
-Set `GITLAB_URL` to point at another instance (defaults to `http://localhost:8929`).
 
 Troubleshooting: `docker exec gitlab gitlab-rake "gitlab:mcp:verify_setup[<username>]"` runs GitLab's own MCP diagnostics.
 
 ## APM package (deliverable)
 
-The shareable package lives in [`apm/`](apm/README.md), a git submodule of https://github.com/luizvnasc/ai-hackathon-apm (clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone). Teams install it with `apm install luizvnasc/ai-hackathon-apm` and run its setup wizard (`/setup-mcp` in Claude Code, or `apm/scripts/setup-mcp.sh`) to register the GitLab MCP server against their own instance.
+The shareable package lives in [`apm/`](apm/README.md), a git submodule of https://github.com/luizvnasc/ai-hackathon-apm (clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone). Teams install it with `apm install luizvnasc/ai-hackathon-apm` and set the variables above for their own GitLab and Plane.

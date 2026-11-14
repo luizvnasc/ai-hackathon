@@ -3,10 +3,9 @@ apm_version: 0.35.0
 dependencies:
 - repo_url: _local/apm
   name: hackathon-metrics
-  version: 0.8.0
+  version: 0.9.0
   package_type: apm_package
   deployed_files:
-  - .claude/commands/setup-mcp.md
   - .claude/skills/assign-issues
   - .claude/skills/assign-issues/SKILL.md
   - .claude/skills/assign-issues/scripts/assign.py
@@ -24,32 +23,22 @@ dependencies:
   - .claude/skills/team-velocity/SKILL.md
   - .claude/skills/team-velocity/scripts/velocity.py
   deployed_file_hashes:
-    .claude/commands/setup-mcp.md: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
-    .claude/skills/assign-issues/SKILL.md: sha256:2c5c8243280c257267ce999aea933553b74453469411387ecda18e9e2fe3750a
-    .claude/skills/assign-issues/scripts/assign.py: sha256:30b92056d276a009d51af5e318655113cd71d135cf3320734998c7886e1aa6db
-    .claude/skills/blocked-issues/SKILL.md: sha256:2d3822673bb9bb2260c3032efba1e4a092fd125f42a9de8c8a1faf7a97a58600
-    .claude/skills/blocked-issues/scripts/blocked.py: sha256:b1a27d9e7c1d5ef6bd9d7f76a6be635f1bb09a365fb59513c1baf59905f7d47c
-    .claude/skills/gitlab-to-plane/SKILL.md: sha256:ff40bd32c8e2b7f9a97a8837100eafaa59bdf6796b5839394c40ee146068c662
-    .claude/skills/gitlab-to-plane/scripts/migrate.py: sha256:a48dd8c2ff044c99e18887021c61a0844568b11c8e71c8a5eb959bfac793e58b
-    .claude/skills/populate-project/SKILL.md: sha256:5ef715075e8fd49ded61382ba607d497fdeb1849ef697c9fc1c080b62a87e190
+    .claude/skills/assign-issues/SKILL.md: sha256:b481997bc511d05a3a43bedd676dc9324da4c6197b6a7341ea780d8d4e55f072
+    .claude/skills/assign-issues/scripts/assign.py: sha256:612149b0be1171a8bc83e209602e16e9183d2bb3db3f9871fcf78aa499e3790c
+    .claude/skills/blocked-issues/SKILL.md: sha256:573c752c73f6dfaef28fe8876d49d618062cc47bd828b05f94daecee4ee4b85a
+    .claude/skills/blocked-issues/scripts/blocked.py: sha256:326751dfb54d9db1e59d9cdf6bbe45580a23861607941bac43c272c1cd02ce81
+    .claude/skills/gitlab-to-plane/SKILL.md: sha256:108a8ac9d1895e19a9abac7ce3459d36dac6db2cd92250f798da84cd63f12973
+    .claude/skills/gitlab-to-plane/scripts/migrate.py: sha256:a5b9a79d9627751c8051c72edd3f20977107c1bfa35158dcbf57cb1d2b5586fe
+    .claude/skills/populate-project/SKILL.md: sha256:544e12224d68c39fbd9c5f8456b3055414f3f8cf5289978e85650d0488f406ae
     .claude/skills/populate-project/labels.default.json: sha256:dc930f18e4e761e3a3d64b55fb55128400374fca37ac0cb4caf82210b11f6bce
-    .claude/skills/populate-project/scripts/populate.py: sha256:91f06cb2c1a21cdb9dc0e8de29b6ee8f3b5e3fc8f67eced5af59314f12f61e91
-    .claude/skills/team-velocity/SKILL.md: sha256:889d2e29fa854bce2c8cfeacad4f3c702bbf12b573d2286c439076405f0b4373
-    .claude/skills/team-velocity/scripts/velocity.py: sha256:50d4ee877145c841862c67f60a1c0436ea91c66d015313184515327aa3668a72
+    .claude/skills/populate-project/scripts/populate.py: sha256:a165fb99b82236dba4c6ae5fca414313471b515fbb13d207cba31934aae34516
+    .claude/skills/team-velocity/SKILL.md: sha256:7feba2a3fd9c546dc37acef459ec603e21de627c004233074f99784ec8a38246
+    .claude/skills/team-velocity/scripts/velocity.py: sha256:fef828f6eab9a7f33678c1c5a7b92c0e9738a2e9b3a03f5b00392fb22f6c48f8
   source: local
   local_path: ./apm
-  content_hash: sha256:22b604d3d4b4b6fad2a73a6dcdb27afb685b24ac7710467d85c96e742a33d8dc
+  content_hash: sha256:31a371fba63d612e396f1d0d1a1275e1ce059133d32b46b3d476fcd9ac1d94de
   declared_license: MIT
 deployments:
-- kind: project-relative
-  target: claude
-  value: .claude/commands/setup-mcp.md
-  runtime: null
-  scope: project
-  owners:
-  - ./apm
-  active_owner: ./apm
-  content_hash: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
 - kind: project-relative
   target: claude
   value: .claude/skills/assign-issues
@@ -67,7 +56,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:2c5c8243280c257267ce999aea933553b74453469411387ecda18e9e2fe3750a
+  content_hash: sha256:b481997bc511d05a3a43bedd676dc9324da4c6197b6a7341ea780d8d4e55f072
 - kind: project-relative
   target: claude
   value: .claude/skills/assign-issues/scripts/assign.py
@@ -76,7 +65,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:30b92056d276a009d51af5e318655113cd71d135cf3320734998c7886e1aa6db
+  content_hash: sha256:612149b0be1171a8bc83e209602e16e9183d2bb3db3f9871fcf78aa499e3790c
 - kind: project-relative
   target: claude
   value: .claude/skills/blocked-issues
@@ -94,7 +83,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:2d3822673bb9bb2260c3032efba1e4a092fd125f42a9de8c8a1faf7a97a58600
+  content_hash: sha256:573c752c73f6dfaef28fe8876d49d618062cc47bd828b05f94daecee4ee4b85a
 - kind: project-relative
   target: claude
   value: .claude/skills/blocked-issues/scripts/blocked.py
@@ -103,7 +92,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:b1a27d9e7c1d5ef6bd9d7f76a6be635f1bb09a365fb59513c1baf59905f7d47c
+  content_hash: sha256:326751dfb54d9db1e59d9cdf6bbe45580a23861607941bac43c272c1cd02ce81
 - kind: project-relative
   target: claude
   value: .claude/skills/gitlab-to-plane
@@ -121,7 +110,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:ff40bd32c8e2b7f9a97a8837100eafaa59bdf6796b5839394c40ee146068c662
+  content_hash: sha256:108a8ac9d1895e19a9abac7ce3459d36dac6db2cd92250f798da84cd63f12973
 - kind: project-relative
   target: claude
   value: .claude/skills/gitlab-to-plane/scripts/migrate.py
@@ -130,7 +119,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:a48dd8c2ff044c99e18887021c61a0844568b11c8e71c8a5eb959bfac793e58b
+  content_hash: sha256:a5b9a79d9627751c8051c72edd3f20977107c1bfa35158dcbf57cb1d2b5586fe
 - kind: project-relative
   target: claude
   value: .claude/skills/populate-project
@@ -148,7 +137,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:5ef715075e8fd49ded61382ba607d497fdeb1849ef697c9fc1c080b62a87e190
+  content_hash: sha256:544e12224d68c39fbd9c5f8456b3055414f3f8cf5289978e85650d0488f406ae
 - kind: project-relative
   target: claude
   value: .claude/skills/populate-project/labels.default.json
@@ -166,7 +155,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:91f06cb2c1a21cdb9dc0e8de29b6ee8f3b5e3fc8f67eced5af59314f12f61e91
+  content_hash: sha256:a165fb99b82236dba4c6ae5fca414313471b515fbb13d207cba31934aae34516
 - kind: project-relative
   target: claude
   value: .claude/skills/team-velocity
@@ -184,7 +173,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:889d2e29fa854bce2c8cfeacad4f3c702bbf12b573d2286c439076405f0b4373
+  content_hash: sha256:7feba2a3fd9c546dc37acef459ec603e21de627c004233074f99784ec8a38246
 - kind: project-relative
   target: claude
   value: .claude/skills/team-velocity/scripts/velocity.py
@@ -193,7 +182,7 @@ deployments:
   owners:
   - ./apm
   active_owner: ./apm
-  content_hash: sha256:50d4ee877145c841862c67f60a1c0436ea91c66d015313184515327aa3668a72
+  content_hash: sha256:fef828f6eab9a7f33678c1c5a7b92c0e9738a2e9b3a03f5b00392fb22f6c48f8
 - kind: uri
   target: mcp
   value: gitlab
