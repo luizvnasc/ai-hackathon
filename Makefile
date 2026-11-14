@@ -6,7 +6,7 @@ JIRA   := jira
 GITLAB := gitlab
 PLANE  := proxy plane-minio beat-worker migrator
 
-.PHONY: help setup up down stop ps logs status jira gitlab plane gitlab-password nuke gitlab-seed plane-admin plane-password
+.PHONY: help setup up down stop ps logs status jira gitlab plane gitlab-password nuke gitlab-seed plane-seed plane-admin plane-password
 
 help: ## List commands
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -73,8 +73,13 @@ plane-password: ## Print the Plane root admin email and password
 	@grep -E '^PLANE_ADMIN_(EMAIL|PASSWORD)=' infra/.env | cut -d= -f2
 
 gitlab-seed: ## Seed the demo acme/inventory-manager project (RESET=1 recreates it)
+	docker cp infra/seed/inventory_manager.json $(GITLAB):/tmp/inventory_manager.json
 	docker cp infra/gitlab/seed/inventory_manager.rb $(GITLAB):/tmp/inventory_manager.rb
 	docker exec -e RESET=$(RESET) $(GITLAB) gitlab-rails runner /tmp/inventory_manager.rb
+
+plane-seed: ## Seed the same demo project into Plane (workspace acme, project INV; RESET=1 recreates it)
+	$(COMPOSE) cp infra/seed/inventory_manager.json api:/tmp/inventory_manager.json
+	$(COMPOSE) exec -T -e RESET=$(RESET) api python manage.py shell < infra/plane/seed/inventory_manager.py
 
 nuke: ## DELETE containers AND volumes (all data!)
 	@read -p "This deletes ALL Jira/GitLab/Plane data. Confirm? [y/N] " a; [ "$$a" = y ] && $(COMPOSE) down -v
