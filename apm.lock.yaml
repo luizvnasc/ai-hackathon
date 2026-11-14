@@ -3,7 +3,7 @@ apm_version: 0.35.0
 dependencies:
 - repo_url: _local/apm
   name: hackathon-metrics
-  version: 0.7.0
+  version: 0.8.0
   package_type: apm_package
   deployed_files:
   - .claude/commands/setup-mcp.md
@@ -20,6 +20,9 @@ dependencies:
   - .claude/skills/populate-project/SKILL.md
   - .claude/skills/populate-project/labels.default.json
   - .claude/skills/populate-project/scripts/populate.py
+  - .claude/skills/team-velocity
+  - .claude/skills/team-velocity/SKILL.md
+  - .claude/skills/team-velocity/scripts/velocity.py
   deployed_file_hashes:
     .claude/commands/setup-mcp.md: sha256:1b842d14117b7a7be7f82898355be7d2a72fa5cd537080a6952b66fc16ea8b5a
     .claude/skills/assign-issues/SKILL.md: sha256:2c5c8243280c257267ce999aea933553b74453469411387ecda18e9e2fe3750a
@@ -31,9 +34,11 @@ dependencies:
     .claude/skills/populate-project/SKILL.md: sha256:5ef715075e8fd49ded61382ba607d497fdeb1849ef697c9fc1c080b62a87e190
     .claude/skills/populate-project/labels.default.json: sha256:dc930f18e4e761e3a3d64b55fb55128400374fca37ac0cb4caf82210b11f6bce
     .claude/skills/populate-project/scripts/populate.py: sha256:91f06cb2c1a21cdb9dc0e8de29b6ee8f3b5e3fc8f67eced5af59314f12f61e91
+    .claude/skills/team-velocity/SKILL.md: sha256:889d2e29fa854bce2c8cfeacad4f3c702bbf12b573d2286c439076405f0b4373
+    .claude/skills/team-velocity/scripts/velocity.py: sha256:50d4ee877145c841862c67f60a1c0436ea91c66d015313184515327aa3668a72
   source: local
   local_path: ./apm
-  content_hash: sha256:f58f6192d66bde1649a7bfb4a37025e9622e8793d9705cd0efa04c5ae890b068
+  content_hash: sha256:22b604d3d4b4b6fad2a73a6dcdb27afb685b24ac7710467d85c96e742a33d8dc
   declared_license: MIT
 deployments:
 - kind: project-relative
@@ -162,6 +167,33 @@ deployments:
   - ./apm
   active_owner: ./apm
   content_hash: sha256:91f06cb2c1a21cdb9dc0e8de29b6ee8f3b5e3fc8f67eced5af59314f12f61e91
+- kind: project-relative
+  target: claude
+  value: .claude/skills/team-velocity
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/team-velocity/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:889d2e29fa854bce2c8cfeacad4f3c702bbf12b573d2286c439076405f0b4373
+- kind: project-relative
+  target: claude
+  value: .claude/skills/team-velocity/scripts/velocity.py
+  runtime: null
+  scope: project
+  owners:
+  - ./apm
+  active_owner: ./apm
+  content_hash: sha256:50d4ee877145c841862c67f60a1c0436ea91c66d015313184515327aa3668a72
 - kind: uri
   target: mcp
   value: gitlab
