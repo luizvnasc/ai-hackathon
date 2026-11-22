@@ -5,5 +5,8 @@ infra/.env
 # APM dependencies
 apm_modules/
 
+# Personal Claude Code settings: they can auto-approve code execution, never commit them
+.claude/settings.local.json
+
 # Local secrets (GITLAB_TOKEN, ...)
 .env

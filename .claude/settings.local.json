@@ -1,6 +1,0 @@
-{
-  "enabledMcpjsonServers": [
-    "gitlab"
-  ],
-  "enableAllProjectMcpServers": true
-}

@@ -1,6 +1,6 @@
 # ai-hackathon
 
-Agents, skills, hooks and MCP servers that turn **Jira**, **GitLab** and **Plane** data into metrics — packaged to share with the other teams.
+Agents and skills that turn **Jira**, **GitLab** and **Plane** data into metrics — packaged to share with the other teams.
 
 ## Local environment (Docker)
 
@@ -18,7 +18,7 @@ make help      # other commands (jira / gitlab / plane individually, logs, down,
 | GitLab CE 19.5 | http://localhost:8929 | user `root`, password from `make gitlab-password`. SSH on port 2224. First boot takes ~3-5 min. |
 | Plane v1.4.3 | http://localhost:8090 | `make plane` creates the instance admin `root@plane.local`; get its password with `make plane-password`. Log in at http://localhost:8090/god-mode/, then create a workspace/project. |
 
-All containers share the `ai-hackathon_default` network; from inside it the services are reachable as `http://jira:8080`, `http://gitlab:8929` and `http://plane-proxy` (handy for MCP servers / collectors running in containers).
+All containers share the `ai-hackathon_default` network; from inside it the services are reachable as `http://jira:8080`, `http://gitlab:8929` and `http://plane-proxy` (handy for collectors running in containers).
 
 ### API tokens (next step: metric collectors)
 
@@ -37,21 +37,6 @@ infra/
   plane/compose.yml  # adapted from Plane's official v1.4.3 compose
 ```
 
-## Claude Code + GitLab MCP
-
-GitLab (18.x+) ships a built-in MCP server at `/api/v4/mcp`. This repo's `.mcp.json` registers it as the `gitlab` server.
-
-On **GitLab CE** the `mcp` scope is not offered for personal access tokens (only `ai_features` shows up in the UI), so authentication is done with **OAuth + dynamic client registration**, which Claude Code handles for you:
-
-1. Start `claude` in this repo and approve the project MCP server when prompted.
-2. Run `/mcp` → select `gitlab` → **Authenticate**. A browser tab opens on http://localhost:8929; log in and click **Authorize**.
-3. `/mcp` should now show `gitlab · connected`. The token is stored by Claude Code, not in the repo.
-4. Use the `gitlab-metrics` subagent (`.claude/agents/gitlab-metrics.md`), e.g. *"use the gitlab-metrics agent to report MR lead time for group X over the last 30 days"*.
-
-Set `GITLAB_URL` to point at another instance (defaults to `http://localhost:8929`).
-
-Troubleshooting: `docker exec gitlab gitlab-rake "gitlab:mcp:verify_setup[<username>]"` runs GitLab's own MCP diagnostics.
-
 ## APM package (deliverable)
 
-The shareable package lives in [`apm/`](apm/README.md), a git submodule of https://github.com/luizvnasc/ai-hackathon-apm (clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone). Teams install it with `apm install luizvnasc/ai-hackathon-apm` and run its setup wizard (`/setup-mcp` in Claude Code, or `apm/scripts/setup-mcp.sh`) to register the GitLab MCP server against their own instance.
+The shareable package lives in [`apm/`](apm/README.md), a git submodule of https://github.com/luizvnasc/ai-hackathon-apm (clone with `git clone --recurse-submodules`, or run `git submodule update --init` in an existing clone). Teams install it with `apm install luizvnasc/ai-hackathon-apm`. The skills call the GitLab and Plane APIs directly, with credentials from the environment or `.env`: see [Configuration in the package README](apm/README.md).
