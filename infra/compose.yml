@@ -1,6 +1,6 @@
 # Hackathon data-source stack: Jira + GitLab + Plane.
 # All services share one network (ai-hackathon_default), so future containers
-# (MCP servers, metric collectors) can reach each tool by name.
+# (metric collectors, for example) can reach each tool by name.
 #
 # Start everything:  docker compose -f infra/compose.yml up -d
 # Start just one:    docker compose -f infra/compose.yml up -d jira   (or gitlab / proxy for Plane)
