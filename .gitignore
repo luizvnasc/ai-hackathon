@@ -10,3 +10,7 @@ apm_modules/
 
 # Local secrets (GITLAB_TOKEN, ...)
 .env
+
+# Python bytecode
+__pycache__/
+*.pyc

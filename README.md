@@ -35,6 +35,7 @@ infra/
   jira/compose.yml   # jira + postgres
   gitlab/compose.yml # omnibus in low-memory mode
   plane/compose.yml  # adapted from Plane's official v1.4.3 compose
+tests/               # tests of the APM package in apm/: unit tests and sandboxed evals (see tests/README.md)
 ```
 
 ## APM package (deliverable)
